@@ -46,7 +46,7 @@
   (#set! capture.final))
 
 ((ERROR
-  (attribute_name) @invalid.illegal)
+  (attribute_name) @invalid.illegal.css)
   (#set! capture.final))
 
 ; In `::after`, the "after" has a node type of `tag_name`. Unclear whether this
