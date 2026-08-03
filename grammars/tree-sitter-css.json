@@ -1,7 +1,7 @@
 {
   "name": "CSS",
   "scopeName": "source.css",
-  "type": "modern-tree-sitter",
+  "type": "tree-sitter",
   "parser": "tree-sitter-css",
   // Matches the TextMate grammar's modeline rule, which would otherwise win by
   // 0.5 against the 0.1 that prefers Tree-sitter.

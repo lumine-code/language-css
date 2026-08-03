@@ -14,14 +14,14 @@ describe("CSS grammar selection", () => {
     const grammar = atom.grammars.selectGrammar("sample.css", "/* -*- mode: css -*- */\na {}\n");
 
     expect(grammar.scopeName).toBe("source.css");
-    expect(grammar.constructor.name).toBe("WASMTreeSitterGrammar");
+    expect(grammar.constructor.name).toBe("TreeSitterGrammar");
   });
 
   it("prefers the Tree-sitter grammar for a file without one", () => {
     const grammar = atom.grammars.selectGrammar("sample.css", "a {}\n");
 
     expect(grammar.scopeName).toBe("source.css");
-    expect(grammar.constructor.name).toBe("WASMTreeSitterGrammar");
+    expect(grammar.constructor.name).toBe("TreeSitterGrammar");
   });
 
   it("still honours the TextMate preference", () => {
