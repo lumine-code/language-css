@@ -9,6 +9,10 @@ CSS language support.
 - **Completions**: suggestions for properties, values, and selectors while typing.
 - **Snippets**: shortcuts for common rules and at-rules.
 
+## Installation
+
+To install `language-css` search for _language-css_ in the Install pane of the Lumine settings or run `lumine --install lumine-code/language-css`.
+
 ## Services
 
 - **hyperlink.injection** (`^1.0.0`): consumed to highlight URLs inside stylesheets as clickable links.
