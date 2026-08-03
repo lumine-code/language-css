@@ -3,6 +3,12 @@
   "scopeName": "source.css",
   "type": "modern-tree-sitter",
   "parser": "tree-sitter-css",
+  // Matches the TextMate grammar's modeline rule, which would otherwise win by
+  // 0.5 against the 0.1 that prefers Tree-sitter.
+  "firstLineRegex": [
+    "-\\*-[^*]*\\bmode\\s*:\\s*css\\b[^*]*-\\*-",
+    "vim\\b.*\\bset\\b.*\\b(filetype|ft|syntax)=css"
+  ],
   "fileTypes": ["css"],
   "treeSitter": {
     "parserSource": "github:tree-sitter/tree-sitter-css#v0.25.0",
