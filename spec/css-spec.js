@@ -2,11 +2,11 @@ describe("CSS grammar", function () {
   let grammar = null;
 
   beforeEach(function () {
-    atom.config.set("language.useTreeSitterParsers", false);
+    lumine.config.set("language.useTreeSitterParsers", false);
 
-    waitsForPromise(() => atom.packages.activatePackage("language-css"));
+    waitsForPromise(() => lumine.packages.activatePackage("language-css"));
 
-    runs(() => (grammar = atom.grammars.grammarForScopeName("source.css")));
+    runs(() => (grammar = lumine.grammars.grammarForScopeName("source.css")));
   });
 
   it("parses the grammar", function () {
@@ -20834,7 +20834,7 @@ aaaa; color: red;
 
   describe("performance regressions", function () {
     it("does not hang when tokenizing invalid input preceding an equals sign", function () {
-      grammar = atom.grammars.grammarForScopeName("source.css");
+      grammar = lumine.grammars.grammarForScopeName("source.css");
       const start = Date.now();
       grammar.tokenizeLine('<![CDATA[啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊"=');
       expect(Date.now() - start).toBeLessThan(5000);

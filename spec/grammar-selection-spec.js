@@ -6,28 +6,28 @@
 
 describe("CSS grammar selection", () => {
   beforeEach(async () => {
-    await atom.packages.activatePackage("language-css");
-    atom.config.set("language.useTreeSitterParsers", true);
+    await lumine.packages.activatePackage("language-css");
+    lumine.config.set("language.useTreeSitterParsers", true);
   });
 
   it("prefers the Tree-sitter grammar for a file with a modeline", () => {
-    const grammar = atom.grammars.selectGrammar("sample.css", "/* -*- mode: css -*- */\na {}\n");
+    const grammar = lumine.grammars.selectGrammar("sample.css", "/* -*- mode: css -*- */\na {}\n");
 
     expect(grammar.scopeName).toBe("source.css");
     expect(grammar.constructor.name).toBe("TreeSitterGrammar");
   });
 
   it("prefers the Tree-sitter grammar for a file without one", () => {
-    const grammar = atom.grammars.selectGrammar("sample.css", "a {}\n");
+    const grammar = lumine.grammars.selectGrammar("sample.css", "a {}\n");
 
     expect(grammar.scopeName).toBe("source.css");
     expect(grammar.constructor.name).toBe("TreeSitterGrammar");
   });
 
   it("still honours the TextMate preference", () => {
-    atom.config.set("language.useTreeSitterParsers", false);
+    lumine.config.set("language.useTreeSitterParsers", false);
 
-    const grammar = atom.grammars.selectGrammar("sample.css", "/* -*- mode: css -*- */\na {}\n");
+    const grammar = lumine.grammars.selectGrammar("sample.css", "/* -*- mode: css -*- */\na {}\n");
 
     expect(grammar.scopeName).toBe("source.css");
     expect(grammar.constructor.name).toBe("Grammar");
