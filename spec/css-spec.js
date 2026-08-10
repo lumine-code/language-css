@@ -1,12 +1,12 @@
 describe("CSS grammar", function () {
   let grammar = null;
 
-  beforeEach(function () {
+  beforeEach(async () => {
     lumine.config.set("language.useTreeSitterParsers", false);
 
-    waitsForPromise(() => lumine.packages.activatePackage("language-css"));
+    await lumine.packages.activatePackage("language-css");
 
-    runs(() => (grammar = lumine.grammars.grammarForScopeName("source.css")));
+    grammar = lumine.grammars.grammarForScopeName("source.css");
   });
 
   it("parses the grammar", function () {
