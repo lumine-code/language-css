@@ -11,12 +11,12 @@ CSS language support.
 
 ## Installation
 
-To install `language-css` search for _language-css_ in the Install pane of the Lumine settings or run `lumine --install lumine-code/language-css`.
+To install `language-css` search for it in the Install pane of the Lumine settings, or run the command `lumine --install lumine-code/language-css`.
 
 ## Services
 
-- **hyperlink.injection** (`^1.0.0`): consumed to highlight URLs inside stylesheets as clickable links.
-- **todo.injection** (`^1.0.0`): consumed to highlight `TODO`-style markers inside comments.
+- `hyperlink.injection`: consumed to highlight URLs inside stylesheets as clickable links.
+- `todo.injection`: consumed to highlight `TODO`-style markers inside comments.
 
 ## Contributing
 
