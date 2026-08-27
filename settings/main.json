@@ -1,13 +1,5 @@
 {
   ".source.css": {
-    "language": {
-      "commentStart": "/*",
-      "commentEnd": "*/",
-      "commentDelimiters": {
-        "block": ["/*", "*/"]
-      },
-      "foldEndPattern": "(?<!\\*)\\*\\*/|^\\s*\\}|\\/*\\s*@end\\s*\\*\\/"
-    },
     "autocomplete": {
       "extraWordCharacters": "-",
       "symbols": {
@@ -16,6 +8,14 @@
           "typePriority": 1
         }
       }
+    },
+    "editor": {
+      "commentStart": "/*",
+      "commentEnd": "*/",
+      "commentDelimiters": {
+        "block": ["/*", "*/"]
+      },
+      "foldEndPattern": "(?<!\\*)\\*\\*/|^\\s*\\}|\\/*\\s*@end\\s*\\*\\/"
     }
   },
   ".source.css .meta.property-value.css": {

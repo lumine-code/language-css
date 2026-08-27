@@ -7,7 +7,7 @@
 describe("CSS grammar selection", () => {
   beforeEach(async () => {
     await lumine.packages.activatePackage("language-css");
-    lumine.config.set("language.useTreeSitterParsers", true);
+    lumine.config.set("editor.useTreeSitterParsers", true);
   });
 
   it("prefers the Tree-sitter grammar for a file with a modeline", () => {
@@ -25,7 +25,7 @@ describe("CSS grammar selection", () => {
   });
 
   it("still honours the TextMate preference", () => {
-    lumine.config.set("language.useTreeSitterParsers", false);
+    lumine.config.set("editor.useTreeSitterParsers", false);
 
     const grammar = lumine.grammars.selectGrammar("sample.css", "/* -*- mode: css -*- */\na {}\n");
 
