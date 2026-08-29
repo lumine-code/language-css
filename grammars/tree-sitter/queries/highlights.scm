@@ -139,10 +139,14 @@
   (#set! adjust.startAt lastChild.previousSibling.startPosition)
   (#set! adjust.endAt lastChild.endPosition))
 
-; Punctuation around the arguments of a pseudo-class or a function.
-(arguments
-  "(" @punctuation.definition.arguments.begin.bracket.round.css
-  ")" @punctuation.definition.arguments.end.bracket.round.css)
+; Punctuation around the arguments of a pseudo-class or a function. Keep these
+; patterns rooted on the punctuation: an `arguments` node can span an
+; arbitrarily large value, and a viewport query should not scan all of it just
+; to classify its delimiters.
+(("(" @punctuation.definition.arguments.begin.bracket.round.css)
+  (#is? test.typeAt "parent arguments"))
+((")" @punctuation.definition.arguments.end.bracket.round.css)
+  (#is? test.typeAt "parent arguments"))
 
 ; Punctuation around an attribute selector.
 (attribute_selector
@@ -168,10 +172,13 @@
   (#set! capture.final true))
 
 ; Variable usage:
-; The ""--link--visited" in `color: var(--link-visited);`.
+; The "--link-visited" in `color: var(--link-visited);`.
 ((function_name) @support.function.var.css
-  (arguments (plain_value) @variable.css)
   (#eq? @support.function.var.css "var"))
+
+((plain_value) @variable.css
+  (#is? test.typeAt "parent arguments")
+  (#is? test.textAt "parent.previousNamedSibling var"))
 
 
 ; PROPERTIES
@@ -263,9 +270,9 @@
   (#not-eq? @support.function._TEXT_.css "var"))
 
 
-((function_name) @_IGNORE_
-  (arguments (plain_value) @string.unquoted.css)
-  (#eq? @_IGNORE_ "url"))
+((plain_value) @string.unquoted.css
+  (#is? test.typeAt "parent arguments")
+  (#is? test.textAt "parent.previousNamedSibling url"))
 
 
 ; AT-RULES
@@ -351,10 +358,8 @@
 ; to be recognized as a possible property value for `autocomplete-css` to be
 ; able to complete it. This should match only when it comes at the end of a
 ; property-value pair.
-(
-  (declaration)
-  .
-  (ERROR) @meta.property-value.css
+((ERROR) @meta.property-value.css
+  (#is? test.typeAt "previousNamedSibling declaration")
   (#match? @meta.property-value.css "^\s?!i")
   (#set! capture.final true))
 
