@@ -4,7 +4,7 @@ CSS language support.
 
 ## Features
 
-- **Grammars**: provides Tree-sitter grammars built from [tree-sitter-css](https://github.com/tree-sitter/tree-sitter-css) and TextMate grammars derived from [atom/language-css](https://github.com/atom/language-css).
+- **Grammars**: provides a Tree-sitter grammar built from [tree-sitter-css](https://github.com/tree-sitter/tree-sitter-css).
 - **Syntax highlighting**: full grammar coverage for CSS files.
 - **Completions**: suggestions for properties, values, and selectors while typing.
 - **Snippets**: shortcuts for common rules and at-rules.

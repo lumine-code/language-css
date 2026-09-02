@@ -14,8 +14,7 @@
       "commentEnd": "*/",
       "commentDelimiters": {
         "block": ["/*", "*/"]
-      },
-      "foldEndPattern": "(?<!\\*)\\*\\*/|^\\s*\\}|\\/*\\s*@end\\s*\\*\\/"
+      }
     }
   },
   ".source.css .meta.property-value.css": {
