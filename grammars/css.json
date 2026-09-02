@@ -11,7 +11,7 @@
   "fileTypes": ["css"],
   "treeSitter": {
     "parserSource": "github:tree-sitter/tree-sitter-css#v0.25.0",
-    "wasmBuildTool": "tree-sitter-cli#v0.26.13",
+    "wasmBuildTool": "tree-sitter-cli#v0.27.0",
     "grammar": "css.wasm",
     "highlightsQuery": "css-highlights.scm",
     "foldsQuery": "css-folds.scm",
