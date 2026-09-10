@@ -10,7 +10,7 @@ describe("WASM Tree-sitter CSS grammar", () => {
     await runGrammarTests(path.join(__dirname, "fixtures", "ends-in-tag-name.css"), /\/\*/, /\*\//);
   });
 
-  it("keeps argument, var, URL, and incomplete-value scopes with leaf-rooted queries", async () => {
+  it("keeps argument, var, URL, and incomplete-value scopes with context-aware queries", async () => {
     const editor = await lumine.workspace.open();
     const text = "a { color: var(--accent); background: url(asset.png); color: red !i }";
     editor.setGrammar(lumine.grammars.grammarForScopeName("source.css"));

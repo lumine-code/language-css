@@ -61,8 +61,8 @@
 
 ; Claim the `tag_name` range and block it from being scoped as a tag name.
 (pseudo_element_selector
+  "::"
   (tag_name) @_IGNORE_
-  (#is? test.last true)
   (#set! capture.final true))
 
 ; COMMENTS
@@ -140,9 +140,8 @@
   (#set! adjust.endAt lastChild.endPosition))
 
 ; Punctuation around the arguments of a pseudo-class or a function. Keep these
-; patterns rooted on the punctuation: an `arguments` node can span an
-; arbitrarily large value, and a viewport query should not scan all of it just
-; to classify its delimiters.
+; patterns rooted on the punctuation because `arguments` can be arbitrarily
+; large and a parent-rooted child pattern scans the entire parent for a tile.
 (("(" @punctuation.definition.arguments.begin.bracket.round.css)
   (#is? test.typeAt "parent arguments"))
 ((")" @punctuation.definition.arguments.end.bracket.round.css)
@@ -308,11 +307,13 @@
 ; PUNCTUATION
 ; ===========
 
-(rule_set
-  (block "{" @punctuation.section.property-list.begin.bracket.curly.css)
+("{" @punctuation.section.property-list.begin.bracket.curly.css
+  (#is? test.typeAt "parent block")
+  (#is? test.typeAt "parent.parent rule_set")
   (#set! capture.final true))
-(rule_set
-  (block "}" @punctuation.section.property-list.end.bracket.curly.css)
+("}" @punctuation.section.property-list.end.bracket.curly.css
+  (#is? test.typeAt "parent block")
+  (#is? test.typeAt "parent.parent rule_set")
   (#set! capture.final true))
 
 "{" @punctuation.bracket.curly.begin.css
@@ -357,7 +358,9 @@
 ; `!important` starts out as an ERROR node as it's being typed, but we need it
 ; to be recognized as a possible property value for `autocomplete-css` to be
 ; able to complete it. This should match only when it comes at the end of a
-; property-value pair.
+; property-value pair. Keep the late sibling predicate: ERROR recovery parents
+; are deliberately unstable while text is being typed, so rooting this on one
+; concrete parent shape would reject valid intermediate trees.
 ((ERROR) @meta.property-value.css
   (#is? test.typeAt "previousNamedSibling declaration")
   (#match? @meta.property-value.css "^\s?!i")
