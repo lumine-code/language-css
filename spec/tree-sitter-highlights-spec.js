@@ -186,7 +186,7 @@ describe("CSS Tree-sitter highlights", () => {
   });
 
   it("keeps unbounded contexts leaf-rooted and the bounded pseudo-element structural", () => {
-    const query = fs.readFileSync(HIGHLIGHTS_PATH, "utf8");
+    const query = fs.readFileSync(HIGHLIGHTS_PATH, "utf8").replaceAll("\r\n", "\n");
 
     expect(query).toContain('(#is? test.childOfType "block")');
     expect(query).toContain('(#is? test.childOfType "stylesheet")');
