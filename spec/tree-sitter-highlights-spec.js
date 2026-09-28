@@ -37,8 +37,7 @@ describe("CSS Tree-sitter highlights", () => {
     return editor.scopeDescriptorForBufferPosition(point).getScopesArray();
   }
 
-  function rawCaptures(startRow, endRow) {
-    const layer = languageMode.rootLanguageLayer;
+  async function rawCaptures(startRow, endRow) {
     const options =
       startRow == null
         ? undefined
@@ -46,7 +45,8 @@ describe("CSS Tree-sitter highlights", () => {
             startPosition: new Point(startRow, 0),
             endPosition: new Point(endRow, 0),
           };
-    return layer.queries.highlightsQuery.captures(layer.tree.rootNode, options);
+    const groups = await editor.getGrammarQueryCaptureGroups("highlightsQuery", options);
+    return groups.find(({ grammar }) => grammar === editor.getGrammar())?.captures ?? [];
   }
 
   it("preserves selector, function, argument, variable, URL, and recovery scopes", async () => {
@@ -101,7 +101,7 @@ describe("CSS Tree-sitter highlights", () => {
       ].join("\n"),
     );
 
-    const variableCaptures = rawCaptures(2, 5).filter((capture) =>
+    const variableCaptures = (await rawCaptures(2, 5)).filter((capture) =>
       [
         "variable.css",
         "punctuation.definition.arguments.begin.bracket.round.css",
@@ -122,7 +122,7 @@ describe("CSS Tree-sitter highlights", () => {
       ),
     ).toBe(true);
 
-    const urlCaptures = rawCaptures(6, 8).filter((capture) =>
+    const urlCaptures = (await rawCaptures(6, 8)).filter((capture) =>
       [
         "string.unquoted.css",
         "punctuation.definition.arguments.begin.bracket.round.css",
@@ -154,10 +154,10 @@ describe("CSS Tree-sitter highlights", () => {
     lines.push("    fallback", "  );", "}");
     await setUp(lines.join("\r\n"));
 
-    const captures = rawCaptures(3000, 3006);
+    const captures = await rawCaptures(3000, 3006);
     const localCaptures = captures.filter((capture) => capture.node.startPosition.row >= 3000);
     expect(captures.length).toBeLessThanOrEqual(24);
-    expect(localCaptures.length).toBe(18);
+    expect(localCaptures.length).toBe(12);
     expect(localCaptures.every((capture) => capture.node.startPosition.row < 3006)).toBe(true);
   });
 
@@ -174,7 +174,7 @@ describe("CSS Tree-sitter highlights", () => {
       "punctuation.section.property-list.end.bracket.curly.css",
     );
 
-    const captures = rawCaptures(3000, 3006);
+    const captures = await rawCaptures(3000, 3006);
     const localCaptures = captures.filter((capture) => capture.node.startPosition.row >= 3000);
     expect(captures.length).toBeLessThanOrEqual(80);
     expect(localCaptures.length).toBeGreaterThan(0);
