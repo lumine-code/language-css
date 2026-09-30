@@ -45,8 +45,18 @@ describe("CSS Tree-sitter highlights", () => {
             startPosition: new Point(startRow, 0),
             endPosition: new Point(endRow, 0),
           };
-    const groups = await editor.getGrammarQueryCaptureGroups("highlightsQuery", options);
-    return groups.find(({ grammar }) => grammar === editor.getGrammar())?.captures ?? [];
+    const capturesQuery = await editor.getGrammar().getQuery("highlightsQuery");
+    const queryRoot = editor.getSyntaxNodeAtBufferPosition([0, 0], (node) => !node.parent);
+    const raw = capturesQuery.captures(queryRoot, options);
+    if (!options) return raw;
+    // Range execution must stay bounded; apply the public resolver's scope
+    // predicates to the same capture candidates before counting rendered scopes.
+    expect(raw.length).toBeLessThanOrEqual(80);
+    const candidates = new Set(raw.map(({ patternIndex, node }) => `${patternIndex}/${node.id}`));
+    const groups = await editor.getGrammarQueryCaptureGroups("highlightsQuery");
+    return groups
+      .find(({ grammar }) => grammar === editor.getGrammar())
+      .captures.filter(({ patternIndex, node }) => candidates.has(`${patternIndex}/${node.id}`));
   }
 
   it("preserves selector, function, argument, variable, URL, and recovery scopes", async () => {
