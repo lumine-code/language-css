@@ -22,18 +22,6 @@
   },
   "repository": "https://github.com/lumine-code/language-css",
   "license": "MIT",
-  "consumedServices": {
-    "hyperlink.injection": {
-      "versions": {
-        "^1.0.0": "consumeHyperlinkInjection"
-      }
-    },
-    "todo.injection": {
-      "versions": {
-        "^1.0.0": "consumeTodoInjection"
-      }
-    }
-  },
   "bugs": {
     "url": "https://github.com/lumine-code/language-css/issues"
   },
@@ -50,5 +38,9 @@
     "eslint-plugin-n": "^18.4.0",
     "globals": "^17.12.0",
     "prettier": "^3.9.9"
-  }
+  },
+  "specPackages": [
+    "language-hyperlink",
+    "language-todo"
+  ]
 }

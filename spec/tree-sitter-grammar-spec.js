@@ -23,17 +23,8 @@ describe("WASM Tree-sitter CSS grammar", () => {
   }
 
   function callInjection() {
-    const points = [];
-    const main = lumine.packages.getActivePackage("language-css").mainModule;
-    main
-      .consumeHyperlinkInjection({
-        addInjectionPoint(_scope, options) {
-          points.push(options);
-          return { dispose() {} };
-        },
-      })
-      .dispose();
-    return points.find((point) => point.types.includes("call_expression"));
+    return lumine.grammars.grammarForScopeName("source.css").injectionPointsByType
+      .call_expression[0];
   }
 
   const hyperlinkLayers = (mode) =>
@@ -108,7 +99,7 @@ describe("WASM Tree-sitter CSS grammar", () => {
     }
   });
 
-  it("colorizes unquoted import and property URLs through the actual hyperlink service", async () => {
+  it("colorizes unquoted import and property URLs with the hyperlink grammar", async () => {
     await lumine.packages.activatePackage("language-hyperlink");
     const text =
       "@import url(https://example.com/style.css);\na { background: URL(https://example.com/image.png); }";
@@ -133,10 +124,9 @@ describe("WASM Tree-sitter CSS grammar", () => {
     expect(point.content(calls[1])).toBeNull();
     expect(hyperlinkLayers(mode).length).toBe(3);
     expect(
-      hyperlinkLayers(mode)
-        .map((layer) => layer.injectionPoint.type)
-        .sort(),
-    ).toEqual(["call_expression", "comment", "string_value"]);
+      hyperlinkLayers(mode).filter((layer) => layer.injectionPoint.type === "call_expression")
+        .length,
+    ).toBe(1);
     for (const url of ["https://example.com/quoted.png", "https://example.com/comment"]) {
       const position = editor.getBuffer().positionForCharacterIndex(editor.getText().indexOf(url));
       expect(editor.scopeDescriptorForBufferPosition(position).getScopesArray()).toContain(

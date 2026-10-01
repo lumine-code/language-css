@@ -16,6 +16,7 @@
     "wasmBuildTool": "tree-sitter-cli#v0.27.0",
     "grammar": "css.wasm",
     "highlightsQuery": "css-highlights.scm",
+    "injectionsQuery": "css-injections.scm",
     "foldsQuery": "css-folds.scm",
     "tagsQuery": "css-tags.scm",
     "indentsQuery": "css-indents.scm"
