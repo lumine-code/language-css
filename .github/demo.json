@@ -1,0 +1,16 @@
+{
+  "title": "language-css",
+  "description": "CSS syntax highlighting in the editor.",
+  "recordedOn": "2026-10-13",
+  "sourceRevision": "e9329336a52e7c54c5a673aebeca1ea0a7296b2d",
+  "mode": "normal",
+  "fontSettings": "default",
+  "images": [
+    {
+      "file": "demo.png",
+      "label": "CSS syntax highlighting at the default editor font size.",
+      "width": 1100,
+      "height": 736
+    }
+  ]
+}

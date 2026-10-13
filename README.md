@@ -11,6 +11,8 @@ Fork of [pulsar-edit/pulsar](https://github.com/pulsar-edit/pulsar) (`packages/l
 - **Completions**: suggestions for properties, values, and selectors while typing.
 - **Snippets**: shortcuts for common rules and at-rules.
 
+![CSS syntax highlighting at the default editor font size.](.github/demo.png)
+
 ## Installation
 
 To install `language-css` search for it in the Install pane of the Lumine settings, or run the command `lumine --install lumine-code/language-css`.
