@@ -1,16 +1,61 @@
 {
   "title": "language-css",
-  "description": "CSS syntax highlighting in the editor.",
-  "recordedOn": "2026-10-13",
-  "sourceRevision": "e9329336a52e7c54c5a673aebeca1ea0a7296b2d",
+  "description": "CSS syntax highlighting at the default editor font size.",
+  "recordedOn": "2026-10-14",
+  "sourceRevision": "4e5ac51b2c4b3e97d1c4a9ab078f04c5aeaf5d2f",
+  "themeSourceRevision": "14a69683b0e3238e2bc128fbfae3866c1e4ee9c6",
   "mode": "normal",
   "fontSettings": "default",
+  "scenario": "demo.js",
+  "recipeHash": "836b8328dc450fcedb4cd50480c308af255933496dfabf1dc8ab48bea28d9267",
+  "environment": {
+    "platform": "win32",
+    "arch": "x64",
+    "electron": "44.7.0",
+    "chrome": "152.0.7977.130",
+    "devicePixelRatio": 1,
+    "locale": "en-GB",
+    "fontFamily": "Fira Code, Menlo, DejaVu Sans Mono, Consolas, monospace",
+    "fontSize": 14,
+    "themes": ["one-day-syntax", "one-day-ui"]
+  },
+  "viewport": { "width": 1100, "height": 736 },
+  "cornerRadius": 10,
+  "sources": {
+    "editor": {
+      "revision": "c4d7a05fe6960ae6fb041981d6cf13e9c0286b17",
+      "dirty": true,
+      "workingTreeHash": "af0ec098e764416df9522f3c6e555050b520e4700da382b2b983b2ff3742bd0a"
+    },
+    "package": {
+      "revision": "4e5ac51b2c4b3e97d1c4a9ab078f04c5aeaf5d2f",
+      "dirty": true,
+      "workingTreeHash": "734292721af4f98fa68dc241d1ccc7913292babc45973046934b44d63b11f259"
+    },
+    "language-css": {
+      "revision": "4e5ac51b2c4b3e97d1c4a9ab078f04c5aeaf5d2f",
+      "dirty": true,
+      "workingTreeHash": "734292721af4f98fa68dc241d1ccc7913292babc45973046934b44d63b11f259"
+    },
+    "one-theme": {
+      "revision": "14a69683b0e3238e2bc128fbfae3866c1e4ee9c6",
+      "dirty": true,
+      "workingTreeHash": "25d6ed50595d6b10f7d53e41dbbe8f92dcb5c0e911871356f3e6138e5c76df57"
+    }
+  },
+  "fixtures": [
+    {
+      "file": "workspace.css",
+      "sha256": "50f3ad326f30e10b7d0c83e404a717f1e2a082ce9cd61b3d7ae8ff8bc427e6ec"
+    }
+  ],
   "images": [
     {
       "file": "demo.png",
       "label": "CSS syntax highlighting at the default editor font size.",
       "width": 1100,
-      "height": 736
+      "height": 736,
+      "sha256": "7e19d0cd46593639a70475f049cddaaaa77529a78cfe66a5184847c383416f27"
     }
   ]
 }
