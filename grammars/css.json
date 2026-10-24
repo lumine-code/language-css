@@ -13,7 +13,7 @@
   "fileTypes": ["css"],
   "treeSitter": {
     "parserSource": "github:tree-sitter/tree-sitter-css#v0.25.0",
-    "wasmBuildTool": "tree-sitter-cli#v0.27.0",
+    "wasmBuildTool": "tree-sitter-cli#v0.27.1",
     "grammar": "css.wasm",
     "highlightsQuery": "css-highlights.scm",
     "injectionsQuery": "css-injections.scm",
