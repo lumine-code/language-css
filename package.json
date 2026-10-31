@@ -42,6 +42,8 @@
   },
   "specPackages": [
     "language-hyperlink",
-    "language-todo"
+    "language-todo",
+    "autocomplete",
+    "bracket-matcher"
   ]
 }

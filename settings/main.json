@@ -4,7 +4,7 @@
       "extraWordCharacters": "-",
       "symbols": {
         "selector": {
-          "selector": ".css.selector",
+          "selector": ".entity.name.tag.css, .entity.other.attribute-name.class.css, .entity.other.attribute-name.id.css",
           "typePriority": 1
         }
       }
@@ -14,7 +14,11 @@
       "commentEnd": "*/",
       "commentDelimiters": {
         "block": ["/*", "*/"]
-      }
+      },
+      "nonWordCharacters": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?…"
+    },
+    "bracket-matcher": {
+      "autocompleteCharacters": ["()", "[]", "{}", "\"\"", "''"]
     }
   },
   ".source.css .meta.property-value.css": {
