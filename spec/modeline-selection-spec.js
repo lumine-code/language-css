@@ -23,6 +23,25 @@ describe("CSS modeline selection", () => {
     expect(grammar.firstLineRegex.test("preceding line\n// vim: set ft=css:")).toBe(true);
   });
 
+  it("requires an exact CSS mode name in Vim and Emacs modelines", () => {
+    expect(lumine.grammars.selectGrammar("modeline", "-*- mode: css -*-").scopeName).toBe(
+      "source.css",
+    );
+    for (const suffix of ["ish", "_extra", "-extra", "2", "/extra"]) {
+      for (const source of [
+        "// vim: set ft=css" + suffix + ":",
+        "-*- mode: css" + suffix + " -*-",
+      ]) {
+        expect(lumine.grammars.grammarMatchesPrefix(grammar, source))
+          .withContext(source)
+          .toBe(false);
+        expect(lumine.grammars.selectGrammar("modeline", source).scopeName)
+          .withContext(source)
+          .not.toBe("source.css");
+      }
+    }
+  });
+
   it("keeps failed modelines from revisiting Vim and set tokens", () => {
     expect(grammar.firstLineRegex.source).toContain("(?:(?!vim\\b).)*vim\\b");
     expect(grammar.firstLineRegex.source).toContain("(?:(?!\\bset\\b).)*\\bset\\b");

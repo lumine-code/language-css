@@ -5,10 +5,10 @@
   "parser": "tree-sitter-css",
   // Recognizes editor modelines for extensionless stylesheets.
   "firstLineRegex": [
-    "-\\*-[^*]*\\bmode\\s*:\\s*css\\b[^*]*-\\*-",
+    "-\\*-[^*]*\\bmode\\s*:\\s*css(?=[ \\t;]|-\\*-)[^*]*-\\*-",
     // Stop at the first Vim and set tokens instead of backtracking over them.
     // \x0a keeps existing shebang prefix line counts unchanged.
-    "(?:^|\\x0a)(?:(?!vim\\b).)*vim\\b(?:(?!\\bset\\b).)*\\bset\\b.*\\b(filetype|ft|syntax)=css"
+    "(?:^|\\x0a)(?:(?!vim\\b).)*vim\\b(?:(?!\\bset\\b).)*\\bset\\b.*\\b(filetype|ft|syntax)=css(?=[ \\t:]|$)"
   ],
   "fileTypes": ["css"],
   "treeSitter": {
