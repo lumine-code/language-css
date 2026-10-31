@@ -8,7 +8,7 @@
     "-\\*-[^*]*\\bmode\\s*:\\s*css(?=[ \\t;]|-\\*-)[^*]*-\\*-",
     // Stop at the first Vim and set tokens instead of backtracking over them.
     // \x0a keeps existing shebang prefix line counts unchanged.
-    "(?:^|\\x0a)(?:(?!vim\\b).)*vim\\b(?:(?!\\bset\\b).)*\\bset\\b.*\\b(filetype|ft|syntax)=css(?=[ \\t:]|$)"
+    "(?:^|\\x0a)(?:(?!vim\\b).)*vim\\b(?:(?!\\bset\\b).)*\\bset\\b.*\\b(filetype|ft|syntax)=css(?=[ \\t:\\x0d\\x0a]|$)"
   ],
   "fileTypes": ["css"],
   "treeSitter": {
