@@ -10,7 +10,7 @@
   (#is-not? test.descendantOfType ERROR))
 ((ERROR "{" @indent) @_error
   (#is? test.lastTextOnRow true)
-  (#not-match? @_error "(?:^|[;{])[ \\t]*[-\\w]+[ \\t]*:[ \\t]*[\"'][^\"'\\r\\n]*\\{$"))
+  (#not-match? @_error "(?:^|[;{\\r\\n])[ \\t]*[-\\w]+[ \\t]*:[ \\t]*(?:\"(?:\\\\.|[^\"\\\\\\r\\n])*|'(?:\\\\.|[^'\\\\\\r\\n])*|[uU][rR][lL]\\([^\\)\\r\\n]*)\\{$"))
 (ERROR "{" . (comment) @indent
   (#is? test.lastTextOnRow true))
 

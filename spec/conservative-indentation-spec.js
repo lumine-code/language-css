@@ -51,6 +51,21 @@ describe("language-css conservative indentation", () => {
     await enter('.card[data-name="card"] {', 2);
   });
 
+  it("keeps unfinished property data at its margin across physical lines", async () => {
+    for (const source of [
+      '.card {\n  content: "{',
+      ".card {\n  content: 'text {",
+      ".card {\n  content: \"it's {",
+      '.card {\n  content: "escaped \\" {',
+      ".card {\n  background: url(data:image/svg+xml,{",
+      '.card {\n  content: var(--label, "{',
+      '.card {\n  content: attr(data-label, "{',
+      '.card {\n  background: url("{',
+    ])
+      await enter(source, 2, 1);
+    await enter('.card {\n  &[data-name="card"] {', 4, 1);
+  });
+
   it("preserves whitespace inside multiline literals and comments when reindenting", async () => {
     const source = ".card {\n  /* head\n        aligned\n raw */\n}";
     await setText(source);
