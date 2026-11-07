@@ -69,6 +69,9 @@ suitability for any purpose.
 Source: https://github.com/tree-sitter/tree-sitter-css
 Revision: v0.25.0
 
+Parser source: github:tree-sitter/tree-sitter-css#v0.25.0
+Resolved commit: dda5cfc5722c429eaba1c910ca32c2c0c5bb1a3f
+
 Original file: LICENSE
 
 The MIT License (MIT)
